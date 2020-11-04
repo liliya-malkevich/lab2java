@@ -25,7 +25,7 @@ private JButton buttonApply = new JButton("Применить");
 
     private JLabel labelEquation = new JLabel("Выберите формулу");
     private JLabel labelVariable = new JLabel("Выберите переменную");
-    private JLabel labelResult = new JLabel("Результат");
+    private JLabel labelResult = new JLabel(" Результат ");
 
     private JTextField textApply = new JTextField("0",10);
     private JTextField textResult = new JTextField("0",10);
@@ -49,6 +49,7 @@ private JButton buttonApply = new JButton("Применить");
 
     public Double calculate1(Double x, Double y, double z) {
         return (Math.sin(y)+y*y+Math.exp(Math.cos(y))*Math.pow(Math.log(z)+Math.sin(Math.PI*x*x),1/4));
+        //return x+y+z;
     }
 
     public Double calculate2(Double x, Double y, double z) {
@@ -95,23 +96,29 @@ radioButtonEquation.setSelected(radioButtonEquation.getElements().nextElement().
         addRadioButtonV("Переменная 1",1);
         addRadioButtonV("Переменная 2",2);
         addRadioButtonV("Переменная 3",3);
-        radioButtonVariable.setSelected(radioButtonEquation.getElements().nextElement().getModel(),true);
+        radioButtonVariable.setSelected(radioButtonVariable.getElements().nextElement().getModel(),true);
         hBoxVariable.add(Box.createHorizontalGlue());
         buttonsGroup.add(buttonM);
         buttonsGroup.add(buttonMC);
 
+        
         textApply.setSize(100,100);
         textArea.add(textApply);
         textArea.add(buttonApply);
+
         textArea.add(Box.createHorizontalGlue());
         countButton.add(Box.createHorizontalGlue());
-        countButton.add(buttonCount);
+
         countButton.add(Box.createHorizontalGlue());
-        textResult.setSize(100,100);
+
+
         resultBox.add(Box.createHorizontalGlue());
+
+        resultBox.add(buttonCount);
         resultBox.add(labelResult);
+
         resultBox.add(textResult);
-//        this.add(resultBox);
+
 
         buttonApply.addActionListener(new ActionListener() {
             @Override
@@ -147,7 +154,7 @@ JOptionPane.showMessageDialog(   MyFrame.this, "Ошибка в формате �
         buttonCount.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-labelResult.setText("Ответ");
+labelResult.setText(" Результат ");
 switch (ActiveFormula){
     case (1):{
         textResult.setText(calculate1(varX,varY,varZ).toString());
@@ -192,19 +199,19 @@ buttonM.addActionListener(new ActionListener() {
         switch (ActiveVariable){
             case (1):{
                 varX+=answer;
-                labelResult.setText("X:");
+                labelResult.setText(" X: ");
                 textResult.setText(Double.toString(varX));
             }
             break;
             case (2):{
                 varY+=answer;
-                labelResult.setText("Y:");
+                labelResult.setText(" Y: ");
                 textResult.setText(Double.toString(varY));
             }
             break;
             case (3):{
                 varZ+=answer;
-                labelResult.setText("Z:");
+                labelResult.setText(" Z: ");
                 textResult.setText(Double.toString(varZ));
             }
             break;
@@ -212,12 +219,14 @@ buttonM.addActionListener(new ActionListener() {
     }
 });
 
+        //container1.setLayout(new FlowLayout());
         container1.add(hBoxFormulaType);
         container1.add(hBoxVariable);
         container1.add(buttonsGroup);
         container1.add(textArea);
-        container1.add(buttonCount);
-        container1.add(textResult);
+        //container1.add(buttonCount);
+        //container1.add(textResult);
+        container1.add(resultBox);
 
 
 
